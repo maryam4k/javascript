@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All in one </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h2 {
+            color: #007BFF;
+        }
+        section {
+            margin-bottom: 30px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            /* text-align: center; */
+        }
+        #output {
+            background-color: aqua;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input, button {
+            margin: 5px 0;
+        }
+        #counter {
+            font-size: 100px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Dynamic JavaScript Examples</h1>
+    <!-- Section 1: Data Types -->
+    <section>
+        <h2>1. Data Types</h2>
+        <label for="ageInput">Enter your age:</label>
+        <input type="number" id="ageInput" placeholder="Enter age">
+        <button onclick="updateAge()">Submit</button>
+        <p id="ageOutput"></p>
+    </section>
+
+    <!-- Section 2: Arithmetic Operators -->
+    <section>
+        <h2>2. Arithmetic Operators</h2>
+        <h1>Simple Calculator</h1>
+    <form id="calculator">
+        <label for="a">Enter the 1st value:</label>
+        <input type="number" id="a" required><br><br>
+
+        <label for="operator">Select an operator:</label>
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select><br><br>
+
+        <label for="b">Enter the 2nd value:</label>
+        <input type="number" id="b" required><br><br>
+
+        <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+
+    <h3>Result: <span id="result">N/A</span></h3>
+
+    </section>
+
+    <!-- Section 3: Circumference -->
+    <section>
+        <h2>3. Calculate Circumference</h2>
+        <label for="radiusInput">Enter radius:</label>
+        <input type="number" id="radiusInput" placeholder="Enter radius">
+        <button onclick="calculateCircumference()">Calculate</button>
+        <p id="circumferenceOutput"></p>
+    </section>
+
+    <!-- Section 4: Math Object -->
+    <section>
+        <h2>4. Math Object</h2>
+        <label for="mathInput">Enter a number:</label>
+        <input type="number" id="mathInput" placeholder="Enter a number">
+        <button onclick="showMathCalculations()">Show Calculations</button>
+        <p id="mathOutput"></p>
+    </section>
+
+    <!-- Section 5: Counter -->
+    <section>
+        <h2>5. Counter</h2>
+        <label id="counter">0</label>
+        <div>
+            <button id="Decrease-Btn">Decrease</button>
+            <button id="Reset-Btn">Reset</button>
+            <button id="Increase-Btn">Increase</button>
+        </div>
+    </section>
+
+    <!--Section 6: odd even number-->
+    <section>
+        <h2>6. Even or Odd Checker</h2>
+    <label for="numberInput">Put your number: </label>
+    <input type="number" id="numberInput" placeholder="Number">
+    <button onclick="checkNumber()">Check</button>
+    <p id="oddeven" style="font-weight: bold; color: green;"></p>
+    </section>
+
+    <script>
+        // Section 1: Data Types
+        function updateAge() {
+            let age = Number(document.getElementById("ageInput").value);
+            document.getElementById("ageOutput").innerText = "Your age is " + age + ".";
+        }
+
+        // Section 2: Arithmetic Operators
+        function calculate() {
+            var a = parseFloat(document.getElementById('a').value);
+            var operator = document.getElementById('operator').value;
+            var b = parseFloat(document.getElementById('b').value);
+            var result;
+
+            switch (operator) {
+                case "+":
+                    result = a + b;
+                    break;
+                case "-":
+                    result = a - b;
+                    break;
+                case "*":
+                    result = a * b;
+                    break;
+                case "/":
+                    result = b !== 0 ? a / b : "Cannot divide by zero";
+                    break;
+                case "%":
+                    result = b !== 0 ? a % b : "Cannot divide by zero";
+                    break;
+                default:
+                    result = "Invalid operator";
+            }
+
+            document.getElementById('result').innerText = result;    
+        
+        }
+
+        // Section 3: Circumference
+        function calculateCircumference() {
+            let radius = Number(document.getElementById("radiusInput").value);
+            let circumference = 2 * 3.14 * radius;
+            document.getElementById("circumferenceOutput").innerText = "Circumference: " + circumference;
+        }
+
+        // Section 4: Math Object
+        function showMathCalculations() {
+            let x = Number(document.getElementById("mathInput").value);
+            let calculations = `
+                Math.floor: ${Math.floor(x)}<br>
+                Math.ceil: ${Math.ceil(x)}<br>
+                Math.round: ${Math.round(x)}<br>
+                Math.pow (x^2): ${Math.pow(x, 2)}<br>
+                Math.sqrt: ${Math.sqrt(x)}<br>
+                Math.abs: ${Math.abs(x)}<br>
+            `;
+            document.getElementById("mathOutput").innerHTML = calculations;
+        }
+
+        // Section 5: Counter
+        let count = 0;
+        document.getElementById("Decrease-Btn").onclick = function () {
+            count -= 1;
+            document.getElementById("counter").innerHTML = count;
+        };
+        document.getElementById("Reset-Btn").onclick = function () {
+            count = 0;
+            document.getElementById("counter").innerHTML = count;
+        };
+        document.getElementById("Increase-Btn").onclick = function () {
+            count += 1;
+            document.getElementById("counter").innerHTML = count;
+        };
+
+        //Section 6: odd even number
+        function checkNumber() {
+            // Input box se value lena aur number mein convert karna
+            let number = parseInt(document.getElementById("numberInput").value);
+
+            // Check karna ki number even hai ya odd
+            let oddeven;
+            if (number % 2 === 0) {
+                oddeven = `${number} is Even number.`;
+            } else {
+                oddeven = `${number} is Odd number.`;
+            }
+
+            // Result ko page par display karna
+            document.getElementById("oddeven").innerText = oddeven;
+        }
+    </script>
+</body>
+</html>
