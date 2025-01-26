@@ -36,13 +36,13 @@
 </head>
 <body>
     <h1 style="text-align: center;">Dynamic JavaScript Examples</h1>
-    <!-- Section 1: Data Types -->
+    <!--Section 1 born year-->
     <section>
-        <h2>1. Data Types</h2>
-        <label for="ageInput">Enter your age:</label>
-        <input type="number" id="ageInput" placeholder="Enter age">
-        <button onclick="updateAge()">Submit</button>
-        <p id="ageOutput"></p>
+        <h2>Find Out Which Day You Were Born</h2>
+    <label for="birthDate">Enter your birth date:</label>
+    <input type="date" id="birthDate">
+    <button onclick="findDay()">Find Day</button>
+    <p id="year"></p>
     </section>
 
     <!-- Section 2: Arithmetic Operators -->
@@ -111,10 +111,29 @@
     </section>
 
     <script>
-        // Section 1: Data Types
-        function updateAge() {
-            let age = Number(document.getElementById("ageInput").value);
-            document.getElementById("ageOutput").innerText = "Your age is " + age + ".";
+       //Section 1 born year
+
+       function findDay() {
+            // Get the value from input
+            const dateInput = document.getElementById("birthDate").value;
+
+            // Check if date is valid
+            if (!dateInput) {
+                document.getElementById("year").innerText = "Please enter a valid date.";
+                return;
+            }
+
+            // Create a new Date object
+            const date = new Date(dateInput);
+
+            // Array of days
+            const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+            // Get the day index
+            const dayIndex = date.getDay();
+
+            // Display the day
+            document.getElementById("year").innerText = `You were born on a ${days[dayIndex]}.`;
         }
 
         // Section 2: Arithmetic Operators
@@ -200,6 +219,7 @@
             // Result ko page par display karna
             document.getElementById("oddeven").innerText = oddeven;
         }
+
     </script>
 </body>
 </html>
